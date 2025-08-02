@@ -3,17 +3,17 @@ import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const s3 = new S3Client({
-  region: process.env.NEXT_PUBLIC_REGION!,
+  region: process.env.NEXT_PUBLIC_REGION_LD!,
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY!,
-    secretAccessKey: process.env.AWS_SECRET_KEY!,
+    accessKeyId: process.env.AWS_ACCESS_KEY_LD!,
+    secretAccessKey: process.env.AWS_SECRET_KEY_LD!,
   },
 });
 
 export async function GET(req: NextRequest) {
   const key = req.nextUrl.searchParams.get("key")!;
   const command = new GetObjectCommand({
-    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME!,
+    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME_LD!,
     Key: key,
   });
 
