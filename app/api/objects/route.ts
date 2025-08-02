@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 
 const s3 = new S3Client({
-  region: process.env.NEXT_PUBLIC_REGION_LD!,
+  region: process.env.NEXT_PUBLIC_REGION!,
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_LD!,
-    secretAccessKey: process.env.AWS_SECRET_KEY_LD!,
+    accessKeyId: process.env.AWS_ACCESS_KEY!,
+    secretAccessKey: process.env.AWS_SECRET_KEY!,
   },
 });
 
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
   const folderPath = req.nextUrl.searchParams.get("path") || "";
 
   const command = new ListObjectsV2Command({
-    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME_LD!,
+    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME!,
     Prefix: folderPath,
     Delimiter: "/",
   });
